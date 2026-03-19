@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Advanced Family Office — Private Capital Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Marcellus&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ivory:#FAF8F5;
+  --white:#FFFFFF;
+  --cream:#F0EDE8;
+  --navy:#0F1B2D;
+  --navy-alt:#162236;
+  --navy-light:#1C2D45;
+  --copper:#B8865C;
+  --copper-light:#CC9966;
+  --copper-dark:#9A6F42;
+  --text-dark:#0F1B2D;
+  --text-body:#4A5568;
+  --text-light:#7A8599;
+  --border:rgba(15,27,45,0.08);
+  --border-dark:rgba(255,255,255,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:var(--text-body);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* ══════════ NAVIGATION ══════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 4%;
+  background:var(--white);
+  transition:padding .3s,box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 4px 12px rgba(15,27,45,0.08);padding:.8rem 4%}
+
+.nav-logo{display:flex;align-items:center;gap:1rem;text-decoration:none;cursor:pointer}
+.nav-monogram{
+  width:50px;height:50px;
+  border:2.5px solid var(--navy);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Marcellus',serif;font-size:1.25rem;color:var(--copper);font-weight:600;
+}
+.nav-text{display:flex;flex-direction:column;gap:.125rem}
+.nav-text-main{font-family:'Marcellus',serif;font-size:1.1rem;color:var(--navy);font-weight:600;letter-spacing:.5px}
+.nav-text-sub{font-size:.65rem;color:var(--copper);letter-spacing:1px;text-transform:uppercase}
+
+.nav-links{display:flex;gap:0;align-items:center}
+.nav-links a{
+  color:var(--text-body);text-decoration:none;
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.5rem .8rem;transition:color .3s;position:relative;white-space:nowrap;font-weight:400;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:.8rem;right:.8rem;height:2px;
+  background:var(--copper);transform:scaleX(0);transform-origin:right;transition:transform .3s;
+}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+.nav-cta{
+  background:var(--copper)!important;color:var(--white)!important;
+  padding:.6rem 1.3rem!important;border-radius:2px;
+  font-weight:500!important;letter-spacing:.1em!important;margin-left:.5rem;
+}
+.nav-cta:hover{background:var(--copper-dark)!important}
+.nav-cta::after{display:none!important}
+.contract-link{color:var(--copper)!important;font-weight:500!important}
+
+.hamburger{display:none;flex-direction:column;gap:6px;cursor:pointer;padding:.5rem}
+.hamburger span{width:25px;height:2.5px;background:var(--navy);transition:.3s}
+
+/* ══════════ PAGES ══════════ */
+.page{display:none;padding-top:74px;min-height:100vh}
+.page.active{display:block}
+
+/* ══════════ SHARED ELEMENTS ══════════ */
+.section{padding:5rem 5%}
+.section-inner{max-width:1140px;margin:0 auto}
+.label{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:var(--copper);margin-bottom:.9rem;font-weight:600}
+.h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:600;line-height:1.2;color:var(--navy);margin-bottom:1.2rem;letter-spacing:.5px}
+.body-text{font-size:.95rem;line-height:1.9;color:var(--text-light);max-width:580px;font-weight:300}
+.divider{width:48px;height:2px;background:linear-gradient(90deg,var(--copper),transparent);margin:1.8rem 0}
+
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:.9rem 2.2rem;transition:.25s;cursor:pointer;border:none;font-family:'Inter',sans-serif}
+.btn-copper{background:var(--copper);color:var(--white)}
+.btn-copper:hover{background:var(--copper-light);transform:translateY(-2px);box-shadow:0 8px 20px rgba(184,134,92,0.3)}
+.btn-outline{background:transparent;color:var(--copper);border:2px solid var(--copper)}
+.btn-outline:hover{background:var(--copper);color:var(--white);transform:translateY(-2px)}
+.btn-navy{background:var(--navy);color:var(--white)}
+.btn-navy:hover{background:var(--navy-light);transform:translateY(-2px);box-shadow:0 8px 20px rgba(15,27,45,0.3)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
+.reveal.visible{opacity:1;transform:none}
+
+/* ══════════ HOME HERO ══════════ */
+#home-hero{
+  min-height:100vh;background:var(--navy);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 5%;position:relative;overflow:hidden;
+}
+#home-hero::before,#home-hero::after{
+  content:'';position:absolute;left:0;right:0;height:3px;background:var(--copper);
+}
+#home-hero::before{top:80px}
+#home-hero::after{bottom:140px}
+
+.hero-content{position:relative;z-index:2;max-width:900px;margin:0 auto;text-align:center}
+.hero-eyebrow{font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:var(--copper);margin-bottom:2rem;opacity:0;animation:fadeUp .8s ease .2s forwards;display:flex;align-items:center;justify-content:center;gap:1rem}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:32px;height:1px;background:var(--copper)}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,4.5rem);font-weight:600;line-height:1.15;color:#fff;margin-bottom:2rem;opacity:0;animation:fadeUp .9s ease .35s forwards;letter-spacing:1px}
+.hero-title em{font-style:italic;color:var(--copper);font-weight:600}
+.hero-sub{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--cream);max-width:600px;margin:0 auto 3rem;opacity:0;animation:fadeUp .9s ease .5s forwards}
+.hero-btns{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease .65s forwards}
+.hero-note{margin-top:3.5rem;font-size:.72rem;letter-spacing:.08em;color:rgba(255,255,255,.3);opacity:0;animation:fadeUp .9s ease .8s forwards;display:flex;align-items:center;justify-content:center;gap:.6rem}
+.hero-note::before{content:'';width:6px;height:6px;border:1px solid var(--copper);transform:rotate(45deg);flex-shrink:0}
+
+.stats-bar{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;justify-content:center;gap:4rem;
+  padding:2rem;
+  border-top:2px solid rgba(184,134,92,0.3);
+  border-bottom:2px solid rgba(184,134,92,0.3);
+  background:rgba(0,0,0,.25);
+  backdrop-filter:blur(10px);
+  max-width:600px;margin-left:auto;margin-right:auto;
+  flex-wrap:wrap;
+}
+.stat-item{text-align:center}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--copper);line-height:1;font-weight:600;letter-spacing:1px}
+.stat-label{font-size:.75rem;color:var(--cream);text-transform:uppercase;letter-spacing:1px;margin-top:.5rem}
+
+/* ══════════ WHY US / LEGACY ══════════ */
+.legacy-section{background:var(--ivory);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.legacy-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1140px;margin:0 auto}
+.legacy-list{display:flex;flex-direction:column;gap:1.2rem;margin:2rem 0}
+.legacy-item{display:flex;align-items:flex-start;gap:1.2rem;padding:1.4rem 1.6rem;background:var(--white);border-left:4px solid var(--copper);transition:.2s;box-shadow:0 2px 8px rgba(15,27,45,0.05)}
+.legacy-item:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(15,27,45,0.1)}
+.legacy-item-icon{font-size:.9rem;min-width:24px;color:var(--copper)}
+.legacy-item-text{font-size:.88rem;line-height:1.7;color:var(--text-body)}
+.legacy-answer{background:var(--navy);padding:3rem;position:relative;overflow:hidden;border-top:4px solid var(--copper)}
+.legacy-answer h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:#fff;margin-bottom:1.2rem;line-height:1.3}
+.legacy-answer p{font-size:.9rem;line-height:1.8;color:rgba(255,255,255,.6);margin-bottom:1.2rem}
+.diff-tag{display:inline-block;background:var(--copper);color:#fff;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;padding:.35rem .9rem;font-weight:600}
+
+/* ══════════ THREE PILLARS ══════════ */
+.pillars-section{background:var(--navy);position:relative;overflow:hidden}
+.pillars-header{text-align:center;margin-bottom:4rem;max-width:640px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;position:relative;z-index:1}
+.pillar-card{background:var(--cream);padding:3rem 2.5rem;text-align:center;position:relative;transition:.3s}
+.pillar-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(184,134,92,0.2)}
+.pillar-card::after{content:'';position:absolute;right:-1.25rem;top:50%;transform:translateY(-50%);height:60%;width:2px;background:var(--copper)}
+.pillar-card:last-child::after{display:none}
+.pillar-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:600;color:rgba(184,134,92,0.2);margin-bottom:1rem}
+.pillar-label{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--copper);margin-bottom:.8rem;font-weight:600}
+.pillar-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--navy);margin-bottom:1rem;letter-spacing:.3px}
+.pillar-desc{font-size:.88rem;line-height:1.8;color:var(--text-body);font-weight:300}
+
+/* ══════════ CTA STRIP ══════════ */
+.cta-strip{background:linear-gradient(135deg,var(--copper) 0%,var(--copper-dark) 100%);padding:4.5rem 5%;text-align:center;position:relative;overflow:hidden}
+.cta-strip h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;color:#fff;margin-bottom:.8rem;position:relative;letter-spacing:.5px}
+.cta-strip p{color:rgba(255,255,255,.8);font-size:.95rem;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;position:relative;font-weight:300}
+
+/* ══════════ PAGE HEROES (shared) ══════════ */
+.page-hero{background:var(--navy);padding:8rem 5% 5rem;text-align:center;position:relative}
+.page-hero::after{content:'';position:absolute;bottom:0;left:15%;right:15%;height:3px;background:var(--copper)}
+.page-hero .label{color:var(--copper)}
+.page-hero .h2{color:#fff}
+.page-hero .body-text{color:rgba(255,255,255,.6);margin:0 auto;text-align:center}
+
+/* ══════════ APPROACH ══════════ */
+.approach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:1140px;margin:0 auto}
+.approach-wrap{padding:5rem 5% 0}
+.approach-card{background:var(--white);padding:3rem;position:relative;overflow:hidden;transition:.3s;border:1px solid var(--border)}
+.approach-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(15,27,45,0.06)}
+.approach-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--copper);opacity:0;transition:.4s}
+.approach-card:hover::after{opacity:1}
+.approach-icon{font-size:1.4rem;margin-bottom:1.5rem;color:var(--copper)}
+.approach-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--navy);margin-bottom:.8rem}
+.approach-text{font-size:.88rem;line-height:1.8;color:var(--text-body);font-weight:300}
+.approach-note{font-size:.88rem;margin-top:1rem;color:var(--copper);font-style:italic;font-family:'Cormorant Garamond',serif}
+
+.philosophy-section{background:var(--white);padding:5rem 5%;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.philosophy-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.philosophy-quote{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-style:italic;font-weight:400;line-height:1.55;color:var(--navy);border-left:3px solid var(--copper);padding-left:2rem;margin-bottom:2rem}
+.checklist{display:flex;flex-direction:column;gap:.9rem}
+.check-item{display:flex;align-items:flex-start;gap:.8rem;font-size:.88rem;color:var(--text-body);line-height:1.6;font-weight:300}
+.check-dot{width:20px;height:20px;border:1.5px solid var(--copper);display:flex;align-items:center;justify-content:center;font-size:.6rem;flex-shrink:0;margin-top:.15rem;color:var(--copper)}
+
+/* ══════════ PROGRAMS ══════════ */
+.programs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1140px;margin:4rem auto 0;padding:0 5%}
+.prog-card{background:var(--white);padding:2.8rem 2.5rem;transition:.3s;border:1px solid var(--border)}
+.prog-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(15,27,45,0.06)}
+.prog-icon{font-size:1.8rem;margin-bottom:1.5rem;color:var(--copper)}
+.prog-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--navy);margin-bottom:.5rem}
+.prog-tag{display:inline-block;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;background:rgba(184,134,92,0.08);border:1px solid rgba(184,134,92,0.2);color:var(--copper);padding:.25rem .7rem;margin-bottom:1rem}
+.prog-desc{font-size:.85rem;line-height:1.8;color:var(--text-body);margin-bottom:1.5rem;font-weight:300}
+.prog-works{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--navy);margin-bottom:.5rem}
+.prog-list{font-size:.82rem;color:var(--text-body);line-height:1.9}
+.prog-list li{list-style:none;padding-left:1rem;position:relative}
+.prog-list li::before{content:'';position:absolute;left:0;top:.55em;width:5px;height:5px;border:1px solid var(--copper);transform:rotate(45deg)}
+.prog-not{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#c45c5c;margin:.8rem 0 .4rem}
+.prog-list.bad li::before{border-color:#c45c5c}
+.programs-note{max-width:1140px;margin:3rem auto;padding:0 5%}
+.programs-note-box{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--copper);padding:2.5rem;display:flex;align-items:flex-start;gap:1.5rem}
+.note-icon{font-size:1.2rem;min-width:36px;color:var(--copper)}
+.note-text h4{font-family:'Cormorant Garamond',serif;color:var(--navy);font-size:1.15rem;margin-bottom:.5rem;font-weight:600}
+.note-text p{font-size:.85rem;line-height:1.75;color:var(--text-body);font-weight:300}
+
+/* ══════════ TIERS ══════════ */
+.tiers-section{padding:5rem 5%;background:var(--ivory);border-top:1px solid var(--border)}
+.tiers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:1140px;margin:0 auto}
+.tiers-grid-3{grid-template-columns:repeat(3,1fr)}
+.tier-card{overflow:hidden;border:1px solid var(--border);transition:.3s;background:var(--white)}
+.tier-card:hover{box-shadow:0 8px 30px rgba(15,27,45,0.06)}
+.tier-header{padding:2rem 2.5rem;display:flex;align-items:center;gap:1.2rem;background:var(--navy)}
+.tier-badge{width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;flex-shrink:0;border:1.5px solid}
+.tier-a .tier-badge{border-color:var(--copper);color:var(--copper)}
+.tier-b .tier-badge{border-color:#4a9eff;color:#4a9eff}
+.tier-c .tier-badge{border-color:#d4a24e;color:#d4a24e}
+.tier-d .tier-badge{border-color:#c45c5c;color:#c45c5c}
+.tier-header-info h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#fff;font-weight:400;margin-bottom:.2rem}
+.tier-range{font-size:.7rem;color:rgba(255,255,255,.5);letter-spacing:.1em}
+.tier-body{background:var(--white);padding:2rem 2.5rem}
+.tier-options{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.2rem}
+.tier-opt{display:flex;align-items:center;gap:.8rem;font-size:.85rem;color:var(--text-body);font-weight:300}
+.tier-opt-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.tier-note{font-size:.85rem;color:var(--text-body);font-style:italic;border-top:1px solid var(--border);padding-top:.8rem;margin-top:.5rem;font-family:'Cormorant Garamond',serif}
+
+.tiers-disclaimer{max-width:1140px;margin:2rem auto;padding:0 5%}
+.disclaimer-box{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--copper);padding:1.5rem 2rem;font-size:.82rem;color:var(--text-body);line-height:1.7;font-weight:300}
+
+.approval-factors{background:var(--navy);padding:5rem 5%;border-top:1px solid var(--border-dark)}
+.factors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1140px;margin:3rem auto 0}
+.factor-card{background:var(--navy-alt);border:1px solid var(--border-dark);padding:2rem;transition:.3s}
+.factor-card:hover{border-color:rgba(184,134,92,0.3)}
+.factor-icon{font-size:1.2rem;margin-bottom:1rem;color:var(--copper)}
+.factor-title{font-size:.85rem;font-weight:600;color:#fff;margin-bottom:.5rem}
+.factor-text{font-size:.8rem;line-height:1.7;color:rgba(255,255,255,.5);font-weight:300}
+
+/* ══════════ PROTECT ══════════ */
+.red-flags-section{padding:5rem 5%;background:var(--ivory);border-top:1px solid var(--border)}
+.red-flags-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:1140px;margin:3rem auto 0}
+.flag-card{overflow:hidden;border:1px solid var(--border);background:var(--white)}
+.flag-header{background:var(--navy);padding:1.5rem 2rem;display:flex;align-items:center;gap:1rem}
+.flag-header h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff;font-weight:400}
+.flag-tag{background:#c45c5c;color:#fff;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;padding:.2rem .5rem;font-weight:600;margin-left:auto;white-space:nowrap}
+.flag-body{background:var(--white);padding:1.8rem 2rem}
+.flag-body p{font-size:.85rem;line-height:1.8;color:var(--text-body);margin-bottom:.8rem;font-weight:300}
+.flag-body p:last-child{margin-bottom:0}
+.flag-body strong{color:var(--navy);font-weight:600}
+
+.protect-guide{background:var(--white);padding:5rem 5%;border-top:1px solid var(--border)}
+.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1140px;margin:0 auto;align-items:start}
+.guide-item{display:flex;flex-direction:column;gap:1rem}
+.guide-q{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--navy);border-left:3px solid var(--copper);padding-left:1rem;font-weight:400}
+.guide-a{font-size:.85rem;line-height:1.8;color:var(--text-body);padding-left:1.3rem;font-weight:300}
+
+.honest-box{max-width:1140px;margin:4rem auto;padding:0 5%}
+.honest-inner{background:var(--navy);padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.honest-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-style:italic;color:#fff;margin-bottom:1rem;line-height:1.3;font-weight:400}
+.honest-desc{font-size:.88rem;line-height:1.8;color:rgba(255,255,255,.6);font-weight:300}
+.honest-list{display:flex;flex-direction:column;gap:.8rem}
+.honest-list li{display:flex;align-items:flex-start;gap:.8rem;font-size:.88rem;color:rgba(255,255,255,.6);list-style:none;line-height:1.6;font-weight:300}
+.honest-list li::before{content:'';width:6px;height:6px;border:1px solid var(--copper);transform:rotate(45deg);flex-shrink:0;margin-top:.4rem}
+
+/* ══════════ CASE STUDIES ══════════ */
+.cases-section{padding:5rem 5%;background:var(--ivory);border-top:1px solid var(--border)}
+.case-card{max-width:1140px;margin:0 auto 2rem;border:1px solid var(--border);overflow:hidden;background:var(--white)}
+.case-card:last-child{margin-bottom:0}
+.case-header{background:var(--navy);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.case-biz{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.3rem}
+.case-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#fff;font-weight:400}
+.case-badge{background:rgba(184,134,92,.12);border:1px solid rgba(184,134,92,.3);color:var(--copper);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;padding:.4rem .9rem}
+.case-body{padding:2.5rem 3rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;align-items:start;background:var(--white)}
+.case-col h4{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:1rem}
+.case-metric{font-size:.85rem;color:var(--text-body);display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border);font-weight:300}
+.case-metric:last-child{border-bottom:none}
+.case-metric span:last-child{color:var(--navy);font-weight:500}
+.case-metric.improved span:last-child{color:var(--copper)}
+.case-result-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--copper);line-height:1;font-weight:600}
+.case-result-label{font-size:.75rem;color:var(--text-body);margin-top:.3rem;line-height:1.5}
+.case-insight{background:var(--ivory);padding:1.5rem 2rem;font-size:.92rem;color:var(--text-body);line-height:1.75;border-top:1px solid var(--border);font-style:italic;font-family:'Cormorant Garamond',serif}
+.case-insight strong{color:var(--navy);font-style:normal}
+
+/* ══════════ PROCESS ══════════ */
+.process-section{padding:5rem 5%;background:var(--ivory);border-top:1px solid var(--border)}
+.process-steps{max-width:860px;margin:0 auto}
+.step{display:grid;grid-template-columns:80px 1fr;gap:2rem;padding:3rem 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step-num{width:52px;height:52px;border:1.5px solid var(--copper);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--copper);flex-shrink:0}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--navy);margin-bottom:.6rem;font-weight:600}
+.step-desc{font-size:.88rem;line-height:1.8;color:var(--text-body);margin-bottom:1rem;font-weight:300}
+.step-details{display:flex;flex-wrap:wrap;gap:.5rem}
+.step-tag{background:rgba(184,134,92,0.08);border:1px solid rgba(184,134,92,0.15);color:var(--text-body);font-size:.68rem;letter-spacing:.08em;padding:.25rem .7rem}
+
+.stress-test{background:var(--navy);padding:5rem 5%;border-top:1px solid var(--border-dark)}
+.stress-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.stress-factors{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.stress-factor{background:var(--navy-alt);border:1px solid var(--border-dark);padding:1.2rem 1.5rem}
+.sf-label{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.3rem}
+.sf-value{font-size:.88rem;color:#fff}
+
+/* ══════════ FAQ ══════════ */
+.faq-section{padding:5rem 5%;background:var(--ivory);border-top:1px solid var(--border)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;max-width:1140px;margin:0 auto}
+.faq-item{background:var(--white);border:1px solid var(--border);overflow:hidden;transition:.3s}
+.faq-item:hover{box-shadow:0 4px 16px rgba(15,27,45,0.05)}
+.faq-q{padding:1.5rem 2rem;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:400;transition:.2s}
+.faq-q:hover{background:var(--cream)}
+.faq-q::after{content:'+';font-size:1.2rem;color:var(--copper);flex-shrink:0;transition:.3s;font-family:'Inter',sans-serif;font-weight:300}
+.faq-item.open .faq-q::after{content:'\2212'}
+.faq-a{display:none;padding:0 2rem 1.5rem;font-size:.85rem;line-height:1.85;color:var(--text-body);border-top:1px solid var(--border);font-weight:300}
+.faq-item.open .faq-a{display:block;padding-top:1.2rem}
+
+/* ══════════ ABOUT ══════════ */
+.about-section{padding:5rem 5%;background:var(--ivory);border-top:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1140px;margin:0 auto;align-items:start}
+.about-card{background:var(--navy);padding:3rem;position:relative;overflow:hidden;border-top:4px solid var(--copper)}
+.about-card blockquote{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:rgba(255,255,255,.9);line-height:1.5;margin-bottom:2rem;font-weight:400}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;border-top:1px solid var(--border-dark);padding-top:2rem;margin-top:1rem}
+.about-stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--copper);font-weight:600}
+.about-stat-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.2rem}
+.about-values{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.value-item{border-left:3px solid var(--copper);padding-left:1.5rem}
+.value-title{font-weight:600;color:var(--navy);margin-bottom:.3rem;font-size:.92rem}
+.value-desc{font-size:.85rem;line-height:1.75;color:var(--text-body);font-weight:300}
+.about-commitment{background:var(--white);padding:5rem 5%;border-top:1px solid var(--border)}
+.commitment-inner{max-width:860px;margin:0 auto;text-align:center}
+.big-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3vw,2.2rem);font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:1.5rem;font-weight:400}
+.big-quote-attr{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--copper)}
+
+/* ══════════ CONTRACT REVIEW ══════════ */
+.contract-section{padding:5rem 5%;background:var(--ivory);border-top:1px solid var(--border)}
+.contract-steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1140px;margin:3rem auto 0}
+.contract-step{background:var(--white);border:1px solid var(--border);padding:2.5rem;text-align:center;position:relative}
+.contract-step-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:600;color:rgba(184,134,92,0.2);margin-bottom:1rem}
+.contract-step h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--navy);margin-bottom:.8rem;font-weight:600}
+.contract-step p{font-size:.82rem;line-height:1.75;color:var(--text-body);font-weight:300}
+.contract-main{padding:5rem 5%;background:var(--white);border-top:1px solid var(--border)}
+.contract-main-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1140px;margin:0 auto;align-items:start}
+.contract-what-list{display:flex;flex-direction:column;gap:.8rem;margin-top:1.5rem}
+.contract-what-item{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.2rem;background:var(--ivory);border:1px solid var(--border);font-size:.85rem;color:var(--text-body);line-height:1.6;font-weight:300}
+.contract-what-item::before{content:'';width:6px;height:6px;border:1px solid var(--copper);transform:rotate(45deg);flex-shrink:0;margin-top:.4rem}
+.contract-reassurance{padding:5rem 5%;background:var(--ivory);border-top:1px solid var(--border)}
+.contract-reassurance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1140px;margin:3rem auto 0}
+.reassurance-card{background:var(--white);border:1px solid var(--border);padding:2rem;text-align:center}
+.reassurance-card .icon{font-size:1.3rem;margin-bottom:1rem;color:var(--copper)}
+.reassurance-card h4{font-size:.88rem;color:var(--navy);margin-bottom:.5rem;font-weight:600}
+.reassurance-card p{font-size:.8rem;line-height:1.7;color:var(--text-body);font-weight:300}
+
+/* ══════════ CONTACT ══════════ */
+.contact-section{padding:5rem 5%;background:var(--ivory);border-top:1px solid var(--border)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1140px;margin:0 auto;align-items:start}
+.contact-info-block{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.ci-item{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;background:var(--white);border:1px solid var(--border);font-size:.88rem;color:var(--text-body);font-weight:300}
+.ci-icon{font-size:1rem;min-width:28px;color:var(--copper)}
+.ci-item strong{color:var(--navy);font-weight:600}
+.upload-box{background:var(--white);border:2px dashed rgba(184,134,92,0.3);padding:3rem;text-align:center;cursor:pointer;transition:.3s;margin-bottom:1.5rem}
+.upload-box:hover{border-color:var(--copper);background:rgba(184,134,92,0.04)}
+.upload-icon{font-size:2rem;margin-bottom:1rem;opacity:.5;color:var(--copper)}
+.upload-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--navy);margin-bottom:.5rem;font-weight:600}
+.upload-sub{font-size:.78rem;color:var(--text-light);font-weight:300}
+.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.form-label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light);font-weight:600}
+.form-input,.form-select,.form-textarea{
+  background:var(--white);border:1px solid var(--border);
+  color:var(--navy);padding:.85rem 1rem;
+  font-family:'Inter',sans-serif;font-size:.88rem;
+  outline:none;transition:border-color .25s;width:100%;font-weight:300;
+}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(15,27,45,.25)}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--copper)}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%23B8865C' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;background-color:var(--white)}
+.form-select option{background:var(--white);color:var(--navy)}
+.form-textarea{resize:vertical;min-height:100px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-submit{width:100%;background:var(--copper);color:#fff;border:none;padding:1rem;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:.25s;margin-top:.5rem}
+.form-submit:hover{background:var(--copper-light);box-shadow:0 6px 24px rgba(184,134,92,0.3)}
+.secure-note{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--text-light);margin-top:.8rem;justify-content:center;font-weight:300}
+.privacy-box{background:var(--white);border:1px solid var(--border);padding:1.8rem;margin-top:1.5rem}
+.privacy-box p{font-size:.78rem;line-height:1.75;color:var(--text-body);font-weight:300}
+
+/* ══════════ FOOTER ══════════ */
+footer{background:var(--navy);padding:4rem 5% 2rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1140px;margin:0 auto;padding-bottom:3rem;border-bottom:1px solid rgba(184,134,92,0.2)}
+.footer-brand .nav-logo{margin-bottom:1rem}
+.footer-tagline{font-size:.78rem;line-height:1.8;color:rgba(255,255,255,.5);max-width:260px;font-weight:300}
+.footer-col h4{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--copper);margin-bottom:1.2rem;font-weight:600}
+.footer-col a{display:block;font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:.6rem;transition:.25s;font-weight:300}
+.footer-col a:hover{color:var(--copper)}
+.footer-bottom{max-width:1140px;margin:2rem auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:.7rem;color:rgba(255,255,255,.3)}
+.footer-disc{font-size:.68rem;color:rgba(255,255,255,.2);max-width:600px;line-height:1.65}
+
+/* ══════════ DARK SECTION TEXT OVERRIDES ══════════ */
+.page-hero .h2,.pillars-header .h2,.stress-test .h2,.approval-factors .h2{color:#fff}
+.page-hero .body-text,.pillars-header .body-text,.stress-test .body-text{color:rgba(255,255,255,.6)}
+
+/* ══════════ ANIMATIONS ══════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media(max-width:900px){
+  .nav-links{display:none;flex-direction:column;position:fixed;top:74px;left:0;right:0;background:var(--white);padding:1.5rem;gap:.5rem;z-index:199;border-bottom:1px solid var(--border);box-shadow:0 4px 12px rgba(15,27,45,0.08)}
+  .nav-links.open{display:flex}
+  .nav-links a{border-bottom:1px solid var(--border);padding:.8rem 0}
+  .hamburger{display:flex}
+  .stats-bar{max-width:100%;flex-direction:column;gap:1.5rem}
+  .legacy-grid,.pillars-grid,.approach-grid,.programs-grid,.tiers-grid,.tiers-grid-3,
+  .red-flags-grid,.guide-grid,.stress-inner,.honest-inner,.case-body,.faq-grid,
+  .about-grid,.contact-grid,.philosophy-inner,.footer-top,.form-row,
+  .contract-steps-grid,.contract-main-grid,.contract-reassurance-grid,.factors-grid{grid-template-columns:1fr}
+  .case-header{flex-direction:column;align-items:flex-start}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .pillar-card::after{display:none}
+  .page-hero::after{left:5%;right:5%}
+}
+@media(max-width:480px){
+  nav{padding:1rem}
+  .nav-text-main{font-size:.9rem}
+  .nav-monogram{width:40px;height:40px;font-size:1rem}
+  #home-hero{padding:0 1rem}
+  #home-hero::before{top:40px}
+  #home-hero::after{bottom:40px}
+  .hero-title{font-size:1.8rem}
+  .hero-sub{font-size:.95rem}
+  .btn{width:100%;justify-content:center}
+  .footer-top{grid-template-columns:1fr;gap:2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="main-nav">
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="nav-monogram">AFO</div>
+    <div class="nav-text">
+      <div class="nav-text-main">Advanced Family Office</div>
+      <div class="nav-text-sub">Private Capital</div>
+    </div>
+  </div>
+  <div class="nav-links" id="nav-links">
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('approach')">Our Approach</a>
+    <a href="#" onclick="showPage('programs')">Programs</a>
+    <a href="#" onclick="showPage('tiers')">Qualifications</a>
+    <a href="#" onclick="showPage('protect')">Protect Yourself</a>
+    <a href="#" onclick="showPage('cases')">Case Studies</a>
+    <a href="#" onclick="showPage('process')">Process</a>
+    <a href="#" onclick="showPage('faq')">FAQ</a>
+    <a href="#" onclick="showPage('about')">About</a>
+    <a href="#" onclick="showPage('contract')" class="contract-link">Contract Review</a>
+    <a href="#" onclick="showPage('contact')" class="nav-cta">Free Review</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════ HOME ════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <section id="home-hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Private Capital &middot; Direct Funding</p>
+      <h1 class="hero-title">Privately backed capital<br>for businesses that<br><em>deserve better.</em></h1>
+      <p class="hero-sub">We're a family office with deep pockets and 15 years of funding experience. We deploy our own capital to fuel privately owned businesses — with the structure, transparency, and long-term strategy that the industry refuses to offer.</p>
+      <div class="hero-btns">
+        <a href="#" onclick="showPage('contact')" class="btn btn-copper">Request a Capital Review</a>
+        <a href="#" onclick="showPage('approach')" class="btn btn-outline">Our Approach</a>
+      </div>
+      <p class="hero-note">Backed by institutional capital. Driven by 15 years of hands-on funding expertise.</p>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-num">$200M+</div><div class="stat-label">Capital Deployed</div></div>
+      <div class="stat-item"><div class="stat-num">15 yrs</div><div class="stat-label">Industry Experience</div></div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="section legacy-section">
+    <div class="legacy-grid">
+      <div class="reveal">
+        <p class="label">Why Advanced Family Office</p>
+        <h2 class="h2">$200M+ in private capital. 15 years of funding experience.</h2>
+        <div class="divider"></div>
+        <div class="legacy-list">
+          <div class="legacy-item"><div class="legacy-item-icon">&#9670;</div><div class="legacy-item-text">We fund directly from our own capital reserves — no middlemen, no hidden broker chains, no inflated rates passed down to you</div></div>
+          <div class="legacy-item"><div class="legacy-item-icon">&#9670;</div><div class="legacy-item-text">15 years in the business means we've seen every market cycle — and we know how to structure capital that keeps businesses growing through all of them</div></div>
+          <div class="legacy-item"><div class="legacy-item-icon">&#9670;</div><div class="legacy-item-text">Our team has underwritten thousands of deals — we know what works, what doesn't, and how to build a structure that actually supports your cash flow</div></div>
+          <div class="legacy-item"><div class="legacy-item-icon">&#9670;</div><div class="legacy-item-text">We stay with the businesses we fund — monitoring positions, adjusting structures, and working toward lower-cost capital over time</div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="legacy-answer">
+          <h3>Real capital.<br>Real experience.<br>Real results.</h3>
+          <p>Most funders are just brokers in disguise. We're a privately backed family office that deploys our own capital — with the depth and experience to structure deals that actually help your business grow.</p>
+          <p>We don't just fund you and move on. We analyze your deposits, debt load, and cash flow to build a strategy that strengthens your business over time — not just this quarter.</p>
+          <span class="diff-tag">Private Family Office &mdash; Direct Capital</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 Pillars -->
+  <section class="section pillars-section">
+    <div class="pillars-header reveal">
+      <p class="label">Our Framework</p>
+      <h2 class="h2" style="color:#fff">The Three Pillars of Legacy Capital</h2>
+      <p class="body-text" style="margin:0 auto;text-align:center;color:rgba(255,255,255,.6)">Short-term funding is not the problem. Taking it without a plan is. Here's how we structure every client relationship.</p>
+    </div>
+    <div class="pillars-grid reveal">
+      <div class="pillar-card">
+        <div class="pillar-num">01</div>
+        <div class="pillar-label">Pillar One</div>
+        <div class="pillar-title">Stabilize</div>
+        <div class="pillar-desc">Secure capital structured around your current cash flow. We choose payment frequency, term, and structure based on what your business can sustain — not what maximizes a commission.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">02</div>
+        <div class="pillar-label">Pillar Two</div>
+        <div class="pillar-title">Strengthen</div>
+        <div class="pillar-desc">Reduce stacking exposure, improve deposit consistency, clean up debt load. We actively monitor your position and strengthen the metrics that matter for long-term qualification.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">03</div>
+        <div class="pillar-label">Pillar Three</div>
+        <div class="pillar-title">Graduate</div>
+        <div class="pillar-desc">Transition into lower-cost monthly programs, lines of credit, or conventional financing when eligible. This is the generational goal — and we architect every deal with this exit in mind.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Strip -->
+  <div class="cta-strip reveal">
+    <h2>If a better structure exists, we will find it.<br>If not, we will tell you why.</h2>
+    <p>No hidden markups. No pressure. Just an honest review of your capital position.</p>
+    <a href="#" onclick="showPage('contact')" class="btn btn-navy">Schedule a Strategy Call</a>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════ APPROACH ════════════════════════════════════════ -->
+<div class="page" id="page-approach">
+  <section class="page-hero">
+    <p class="label">Our Approach</p>
+    <h2 class="h2">Advisory thinking in a transactional industry</h2>
+    <p class="body-text">Most brokers think: fund, commission, next. We think: fund, stabilize, graduate. Here's what that means in practice.</p>
+  </section>
+
+  <div class="approach-wrap">
+    <div class="approach-grid">
+      <div class="approach-card reveal">
+        <div class="approach-icon">&#9670;</div>
+        <div class="approach-title">We Review Before We Quote</div>
+        <div class="approach-text">Before we ever present a deal, we analyze your deposits, existing debt load, negative days, and approval ceiling. You deserve to know what you actually qualify for — not what someone wants to push.</div>
+        <div class="approach-note">Most brokers skip this step entirely.</div>
+      </div>
+      <div class="approach-card reveal">
+        <div class="approach-icon">&#9670;</div>
+        <div class="approach-title">Transparent Compensation</div>
+        <div class="approach-text">We disclose how we're compensated — upfront. No hidden broker points buried in the deal. No 8–12 point markups you discover later. You see the full picture before you sign anything.</div>
+        <div class="approach-note">Industry standard hides this. We don't.</div>
+      </div>
+      <div class="approach-card reveal">
+        <div class="approach-icon">&#9670;</div>
+        <div class="approach-title">Structure for Cash Flow</div>
+        <div class="approach-text">Weekly or daily debits aren't always necessary. We choose payment frequency — weekly, bi-weekly, monthly — based on what your deposits can sustain. Stability over speed.</div>
+        <div class="approach-note">We analyze your cash flow cycle before structuring.</div>
+      </div>
+      <div class="approach-card reveal">
+        <div class="approach-icon">&#9670;</div>
+        <div class="approach-title">Exit Strategy Built In</div>
+        <div class="approach-text">We work toward long-term bankability on every deal — not just the immediate placement. If you follow the structure and improve key metrics, we transition you into lower-cost programs over time.</div>
+        <div class="approach-note">Almost no other firm thinks this far ahead.</div>
+      </div>
+      <div class="approach-card reveal">
+        <div class="approach-icon">&#9670;</div>
+        <div class="approach-title">We Tell You When to Say No</div>
+        <div class="approach-text">If taking capital right now would damage your position — we'll tell you. If consolidation isn't the right move — we'll explain why. Honest guidance sometimes means walking away from a deal.</div>
+        <div class="approach-note">We earn trust by being the advisor who told the truth.</div>
+      </div>
+      <div class="approach-card reveal">
+        <div class="approach-icon">&#9670;</div>
+        <div class="approach-title">Capital Stress Test</div>
+        <div class="approach-text">We analyze average monthly revenue, deposit frequency, negative days, current MCA exposure, and approval ceiling — giving you a complete picture of your capital health before any decision.</div>
+        <div class="approach-note">This is how underwriters think. Now you have access to it too.</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="philosophy-section">
+    <div class="philosophy-inner">
+      <div class="reveal">
+        <p class="label">Our Philosophy</p>
+        <div class="philosophy-quote">"Short-term funding is not the problem. Taking it without a generational plan is."</div>
+        <p class="body-text">We position ourselves as capital structuring advisors — not brokers, not lenders. That means our work doesn't end when the deal closes. It begins there.</p>
+      </div>
+      <div class="reveal">
+        <h3 class="h2" style="font-size:1.5rem;margin-bottom:1.5rem">What that means for your business</h3>
+        <div class="checklist">
+          <div class="check-item"><div class="check-dot">&#10003;</div>You'll understand what you're signing before you sign it</div>
+          <div class="check-item"><div class="check-dot">&#10003;</div>You'll know what the deal actually costs in real terms</div>
+          <div class="check-item"><div class="check-dot">&#10003;</div>You'll have a clear plan for what comes next — not just this advance</div>
+          <div class="check-item"><div class="check-dot">&#10003;</div>You'll know if this is the right move at all — even if the answer is no</div>
+          <div class="check-item"><div class="check-dot">&#10003;</div>You'll work with a team whose goal is your long-term bankability</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-strip">
+    <h2>Ready to review your capital structure?</h2>
+    <p>Upload 3 months of bank statements and we'll provide a free, confidential analysis within 24 hours.</p>
+    <a href="#" onclick="showPage('contact')" class="btn btn-navy">Submit for Free Review</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ PROGRAMS ════════════════════════════════════════ -->
+<div class="page" id="page-programs">
+  <section class="page-hero">
+    <p class="label">Capital Solutions</p>
+    <h2 class="h2">Available programs — explained with full transparency</h2>
+    <p class="body-text">Every program has a right time and a wrong time. We tell you both.</p>
+  </section>
+
+  <div class="programs-grid">
+    <div class="prog-card reveal">
+      <div class="prog-icon">&#9670;</div>
+      <div class="prog-title">SBA &amp; Long-Term Options</div>
+      <div class="prog-tag">Bankable &middot; 5–25 Years</div>
+      <div class="prog-desc">Conventional-rate, long-term financing through SBA programs or bank partners. The ultimate destination — the lower-cost capital every business should be working toward.</div>
+      <div class="prog-works">Best For</div>
+      <ul class="prog-list">
+        <li>680+ FICO with clean history</li>
+        <li>2+ years in business</li>
+        <li>Stable, documented revenue</li>
+      </ul>
+      <div class="prog-not">Not Yet If</div>
+      <ul class="prog-list bad">
+        <li>Active MCAs or heavy stacking</li>
+        <li>Credit or banking issues unresolved</li>
+      </ul>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">&#9670;</div>
+      <div class="prog-title">Secured Lines of Credit</div>
+      <div class="prog-tag">Long-Term &middot; Revolving</div>
+      <div class="prog-desc">Asset-backed revolving credit — draw what you need, repay, draw again. Lowest cost structure available outside of conventional bank financing.</div>
+      <div class="prog-works">Best For</div>
+      <ul class="prog-list">
+        <li>Businesses with 680+ FICO</li>
+        <li>Real estate or equipment assets</li>
+        <li>Businesses ready to move beyond MCAs</li>
+      </ul>
+      <div class="prog-not">Consider Carefully If</div>
+      <ul class="prog-list bad">
+        <li>Collateral is limited or encumbered</li>
+      </ul>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">&#9670;</div>
+      <div class="prog-title">Monthly Payment Programs</div>
+      <div class="prog-tag">Stability &middot; 12–36 Months</div>
+      <div class="prog-desc">Lower-frequency payment structure with reduced factor rates. Better for businesses with consistent monthly revenue looking to protect cash flow and build toward legacy financing.</div>
+      <div class="prog-works">Best For</div>
+      <ul class="prog-list">
+        <li>Established businesses with 650+ FICO</li>
+        <li>Businesses that bank monthly vs. daily</li>
+        <li>Clients transitioning from daily programs</li>
+      </ul>
+      <div class="prog-not">Consider Carefully If</div>
+      <ul class="prog-list bad">
+        <li>Significant negative days in statements</li>
+        <li>Heavy existing MCA stacking</li>
+      </ul>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">&#9670;</div>
+      <div class="prog-title">Revenue-Based Financing</div>
+      <div class="prog-tag">Flexibility &middot; Ongoing</div>
+      <div class="prog-desc">Payments flex with your revenue — higher months pay more, slower months pay less. Reduces the strain of fixed payments during seasonal cycles.</div>
+      <div class="prog-works">Best For</div>
+      <ul class="prog-list">
+        <li>Seasonal or cyclical businesses</li>
+        <li>Service-based companies</li>
+        <li>Businesses with variable monthly revenue</li>
+      </ul>
+      <div class="prog-not">Consider Carefully If</div>
+      <ul class="prog-list bad">
+        <li>Revenue is already declining</li>
+      </ul>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">&#9670;</div>
+      <div class="prog-title">Consolidation &amp; Restructure</div>
+      <div class="prog-tag">Relief &middot; Strategic</div>
+      <div class="prog-desc">Combine multiple active positions into a single, manageable payment. Reduce daily cash drain, improve approval ceiling, and create breathing room for growth.</div>
+      <div class="prog-works">Best For</div>
+      <ul class="prog-list">
+        <li>Businesses with 2+ active MCAs</li>
+        <li>Clients being impacted by daily debits</li>
+        <li>Anyone building toward bankable financing</li>
+      </ul>
+      <div class="prog-not">Not Always Available If</div>
+      <ul class="prog-list bad">
+        <li>Revenue has declined significantly</li>
+        <li>Defaults or UCC liens are present</li>
+      </ul>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">&#9670;</div>
+      <div class="prog-title">Short-Term Working Capital</div>
+      <div class="prog-tag">Speed &middot; 3–12 Months</div>
+      <div class="prog-desc">Revenue-based advance structured against daily or weekly deposits. Fastest access to capital — typically 24–48 hours from approval to funding.</div>
+      <div class="prog-works">Best For</div>
+      <ul class="prog-list">
+        <li>Immediate operational gaps</li>
+        <li>Seasonal inventory needs</li>
+        <li>Time-sensitive opportunities</li>
+        <li>Businesses with strong daily revenue</li>
+      </ul>
+      <div class="prog-not">Consider Carefully If</div>
+      <ul class="prog-list bad">
+        <li>Cash flow is already tight</li>
+        <li>You are already 50%+ over leveraged</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="programs-note">
+    <div class="programs-note-box reveal">
+      <div class="note-icon">&#9670;</div>
+      <div class="note-text">
+        <h4>We'll tell you which program makes sense — and which ones don't.</h4>
+        <p>Most brokers match you to whatever they can place. We analyze your position first and recommend based on what fits your business. If nothing fits right now, we'll explain what needs to change and when to come back.</p>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;padding:3rem 5%">
+    <a href="#" onclick="showPage('contact')" class="btn btn-copper">See What You Qualify For</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ CREDIT TIERS ════════════════════════════════════════ -->
+<div class="page" id="page-tiers">
+  <section class="page-hero">
+    <p class="label">Qualification Overview</p>
+    <h2 class="h2">What you can qualify for — at every credit tier</h2>
+    <p class="body-text">Credit is one factor. Revenue, deposits, and debt load matter just as much. Here's the transparent breakdown.</p>
+  </section>
+
+  <section class="tiers-section">
+    <div class="tiers-grid tiers-grid-3">
+      <div class="tier-card tier-a reveal">
+        <div class="tier-header">
+          <div class="tier-badge">A</div>
+          <div class="tier-header-info"><h3>Tier A — Prime</h3><div class="tier-range">680–800 FICO &middot; Strong Revenue &middot; Clean History</div></div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-options">
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:var(--copper)"></div>Monthly payment programs — 8–14% conventional</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:var(--copper)"></div>Secured line of credit options</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:var(--copper)"></div>SBA pathway (with qualifying revenue)</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:var(--copper)"></div>Lowest factor rates in MCA market</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:var(--copper)"></div>Highest approval ceilings available</div>
+          </div>
+          <div class="tier-note">Best position for generational bankability. Our goal is to get every client here.</div>
+        </div>
+      </div>
+      <div class="tier-card tier-b reveal">
+        <div class="tier-header">
+          <div class="tier-badge">B</div>
+          <div class="tier-header-info"><h3>Tier B — Near-Prime</h3><div class="tier-range">620–679 FICO &middot; Moderate Revenue &middot; Some History</div></div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-options">
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:#4a9eff"></div>Weekly/bi-weekly payment structures</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:#4a9eff"></div>Mid-tier factor rates (1.25–1.35)</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:#4a9eff"></div>Consolidation available with clean deposits</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:#4a9eff"></div>Revenue-based options with flexibility</div>
+          </div>
+          <div class="tier-note">Solid pathway to Tier A. Focus on deposit consistency and debt paydown.</div>
+        </div>
+      </div>
+      <div class="tier-card tier-c reveal">
+        <div class="tier-header">
+          <div class="tier-badge">C</div>
+          <div class="tier-header-info"><h3>Tier C — Rebuilding</h3><div class="tier-range">550–619 FICO &middot; Active Positions &middot; Revenue Present</div></div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-options">
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:#d4a24e"></div>Daily/weekly payment programs</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:#d4a24e"></div>Higher factor rates (1.35–1.49)</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:#d4a24e"></div>Consolidation possible if revenue supports it</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:#d4a24e"></div>Limited approval ceilings</div>
+          </div>
+          <div class="tier-note">Strategy here: stabilize, reduce positions, build toward Tier B within 6–12 months.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tiers-grid" style="margin-top:1.5rem">
+      <div class="tier-card tier-d reveal">
+        <div class="tier-header">
+          <div class="tier-badge">D</div>
+          <div class="tier-header-info"><h3>Tier D — High Risk</h3><div class="tier-range">Below 550 &middot; Defaults &middot; Heavy Stacking</div></div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-options">
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:#c45c5c"></div>Very limited options — high factor rates</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:#c45c5c"></div>Daily debit only with tight withhold</div>
+            <div class="tier-opt"><div class="tier-opt-dot" style="background:#c45c5c"></div>Most reputable funders will decline</div>
+          </div>
+          <div class="tier-note">We may recommend pausing new capital and focusing on stabilization first.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tiers-disclaimer">
+      <div class="disclaimer-box">These tiers are general guidelines only. Actual approval depends on multiple factors including deposit history, existing positions, time in business, industry type, and revenue trend. We review your complete profile before recommending a program.</div>
+    </div>
+  </section>
+
+  <section class="approval-factors">
+    <div class="section-inner" style="text-align:center">
+      <p class="label">What Actually Matters</p>
+      <h2 class="h2" style="color:#fff">The six factors that determine your approval</h2>
+    </div>
+    <div class="factors-grid">
+      <div class="factor-card reveal">
+        <div class="factor-icon">&#9670;</div>
+        <div class="factor-title">Monthly Revenue</div>
+        <div class="factor-text">Total gross deposits averaged over 3+ months. This is the single biggest driver of how much capital you can access.</div>
+      </div>
+      <div class="factor-card reveal">
+        <div class="factor-icon">&#9670;</div>
+        <div class="factor-title">Deposit Consistency</div>
+        <div class="factor-text">How regular and predictable are your deposits? Funders look for consistent patterns, not sporadic large drops.</div>
+      </div>
+      <div class="factor-card reveal">
+        <div class="factor-icon">&#9670;</div>
+        <div class="factor-title">Negative Days</div>
+        <div class="factor-text">Days when your account goes below zero. More than 3–5 per month significantly limits your options and raises your cost.</div>
+      </div>
+      <div class="factor-card reveal">
+        <div class="factor-icon">&#9670;</div>
+        <div class="factor-title">Existing Positions</div>
+        <div class="factor-text">How many MCAs or active obligations you currently hold. Stacking is the #1 risk factor in underwriting.</div>
+      </div>
+      <div class="factor-card reveal">
+        <div class="factor-icon">&#9670;</div>
+        <div class="factor-title">Credit Profile</div>
+        <div class="factor-text">FICO score plus credit behavior — inquiries, derogatory marks, and utilization. Not always the deciding factor, but it shapes your tier.</div>
+      </div>
+      <div class="factor-card reveal">
+        <div class="factor-icon">&#9670;</div>
+        <div class="factor-title">Time in Business</div>
+        <div class="factor-text">Longer operating history generally equals better terms. Most programs require a minimum of 6–12 months in business.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-strip">
+    <h2>Not sure where you fall? Let us show you.</h2>
+    <p>We'll review your statements and tell you exactly where you stand — and what it takes to move up.</p>
+    <a href="#" onclick="showPage('contact')" class="btn btn-navy">Get Your Free Assessment</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ PROTECT ════════════════════════════════════════ -->
+<div class="page" id="page-protect">
+  <section class="page-hero">
+    <p class="label">Protect Yourself</p>
+    <h2 class="h2">Red flags every business owner should know</h2>
+    <p class="body-text">The MCA industry has predatory actors. Here's how to spot them — and how we operate differently.</p>
+  </section>
+
+  <section class="red-flags-section">
+    <div class="section-inner" style="text-align:center">
+      <p class="label">Warning Signs</p>
+      <h2 class="h2">Common industry red flags</h2>
+    </div>
+    <div class="red-flags-grid">
+      <div class="flag-card reveal">
+        <div class="flag-header"><h3>Hidden Broker Points</h3><div class="flag-tag">High Risk</div></div>
+        <div class="flag-body">
+          <p>Many brokers add 8–12 points onto your deal that you never see. They tell you the factor rate is 1.29, but the funder's actual rate was 1.17. <strong>That difference is their hidden commission — paid by you.</strong></p>
+          <p><strong>Our standard:</strong> We disclose our compensation structure before you sign anything.</p>
+        </div>
+      </div>
+      <div class="flag-card reveal">
+        <div class="flag-header"><h3>Fake Direct Lender Claims</h3><div class="flag-tag">High Risk</div></div>
+        <div class="flag-body">
+          <p>Some brokers send you offers on fake letterhead pretending to be the direct funder. You think you're working with the source — <strong>but you're actually paying a middleman premium.</strong></p>
+          <p><strong>Our standard:</strong> We identify every funder by name and you communicate with them directly.</p>
+        </div>
+      </div>
+      <div class="flag-card reveal">
+        <div class="flag-header"><h3>Stacking Without Strategy</h3><div class="flag-tag">Warning</div></div>
+        <div class="flag-body">
+          <p>Taking a second or third MCA isn't inherently bad — but taking one with no exit plan, no debt payoff timeline, and no cash flow analysis <strong>is a recipe for financial erosion.</strong></p>
+          <p><strong>Our standard:</strong> We model every new position against your existing obligations before recommending.</p>
+        </div>
+      </div>
+      <div class="flag-card reveal">
+        <div class="flag-header"><h3>Disappearing After Close</h3><div class="flag-tag">Warning</div></div>
+        <div class="flag-body">
+          <p>Many brokers are commission-focused — they close the deal and move on. <strong>When problems arise, you're on your own.</strong></p>
+          <p><strong>Our standard:</strong> Post-funding monitoring is part of our service. We stay involved because your long-term success is the strategy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="protect-guide">
+    <div class="section-inner" style="text-align:center;margin-bottom:3rem">
+      <p class="label">Due Diligence</p>
+      <h2 class="h2">Questions to ask any capital provider</h2>
+    </div>
+    <div class="guide-grid">
+      <div class="guide-item reveal">
+        <div class="guide-q">"What is the total cost of this deal in dollars?"</div>
+        <div class="guide-a">Not the factor rate — the actual dollar amount you'll repay above what you received. If they can't answer this clearly, walk away.</div>
+      </div>
+      <div class="guide-item reveal">
+        <div class="guide-q">"Are you the direct funder or a broker?"</div>
+        <div class="guide-a">If they claim to be a direct funder, verify it. Ask for the funder's legal name and check UCC filings. Legitimate advisors disclose their role.</div>
+      </div>
+      <div class="guide-item reveal">
+        <div class="guide-q">"How many points are you adding to this deal?"</div>
+        <div class="guide-a">Most brokers will dodge this. Press for a clear number. The industry average broker markup is 8–12 points on top of the funder rate.</div>
+      </div>
+      <div class="guide-item reveal">
+        <div class="guide-q">"What is my exit strategy?"</div>
+        <div class="guide-a">If the answer is "just pay it off and come back for another one" — that's not a strategy. That's a cycle. Demand a clear plan for reducing cost over time.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="honest-box">
+    <div class="honest-inner reveal">
+      <div>
+        <div class="honest-title">"We'd rather lose a deal today than lose a client's trust forever."</div>
+        <div class="honest-desc">This isn't just a philosophy — it's how we operate. Our reputation is built on the businesses we've guided to better outcomes, not the volume of deals we've closed.</div>
+      </div>
+      <ul class="honest-list">
+        <li>We decline deals that would harm our clients</li>
+        <li>We disclose compensation on every transaction</li>
+        <li>We provide post-funding monitoring at no additional cost</li>
+        <li>We work toward graduating clients out of high-cost capital</li>
+        <li>We maintain full transparency throughout the relationship</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cta-strip">
+    <h2>Have an offer you're unsure about?</h2>
+    <p>Send it to us. We'll break down the real cost, identify any red flags, and tell you if it's worth signing.</p>
+    <a href="#" onclick="showPage('contact')" class="btn btn-navy">Request a Free Offer Review</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ CASE STUDIES ════════════════════════════════════════ -->
+<div class="page" id="page-cases">
+  <section class="page-hero">
+    <p class="label">Results</p>
+    <h2 class="h2">Real outcomes. Real businesses.</h2>
+    <p class="body-text">These case studies represent actual client engagements with identifying details changed for privacy.</p>
+  </section>
+  <section class="cases-section">
+    <div class="case-card reveal">
+      <div class="case-header">
+        <div><div class="case-biz">Construction &middot; Family-Owned</div><div class="case-title">Triple-Stacked to Single Monthly Payment</div></div>
+        <div class="case-badge">Graduated to Tier A</div>
+      </div>
+      <div class="case-body">
+        <div class="case-col">
+          <h4>Before</h4>
+          <div class="case-metric"><span>Active MCAs</span><span>3</span></div>
+          <div class="case-metric"><span>Daily Debit</span><span>$1,450/day</span></div>
+          <div class="case-metric"><span>Monthly Cost</span><span>$31,900</span></div>
+          <div class="case-metric"><span>Negative Days</span><span>8/month</span></div>
+        </div>
+        <div class="case-col">
+          <h4>After (6 Months)</h4>
+          <div class="case-metric improved"><span>Active MCAs</span><span>1</span></div>
+          <div class="case-metric improved"><span>Payment</span><span>$4,200/month</span></div>
+          <div class="case-metric improved"><span>Monthly Cost</span><span>$4,200</span></div>
+          <div class="case-metric improved"><span>Negative Days</span><span>0/month</span></div>
+        </div>
+        <div class="case-col">
+          <h4>Outcome</h4>
+          <div class="case-result-num">87%</div>
+          <div class="case-result-label">Reduction in monthly capital cost</div>
+          <div style="margin-top:1rem">
+            <div class="case-result-num">$332K</div>
+            <div class="case-result-label">Estimated savings over 12 months</div>
+          </div>
+        </div>
+      </div>
+      <div class="case-insight"><strong>Key insight:</strong> By consolidating three positions into one monthly program and allowing 90 days of clean deposits, we rebuilt their approval profile and qualified them for conventional monthly terms.</div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-header">
+        <div><div class="case-biz">Restaurant Group &middot; Multi-Location</div><div class="case-title">From Emergency Capital to Structured Growth</div></div>
+        <div class="case-badge">Building Toward SBA</div>
+      </div>
+      <div class="case-body">
+        <div class="case-col">
+          <h4>Before</h4>
+          <div class="case-metric"><span>Active MCAs</span><span>2</span></div>
+          <div class="case-metric"><span>Weekly Debit</span><span>$4,800/week</span></div>
+          <div class="case-metric"><span>Factor Rate</span><span>1.42</span></div>
+          <div class="case-metric"><span>Approval Ceiling</span><span>Maxed</span></div>
+        </div>
+        <div class="case-col">
+          <h4>After (4 Months)</h4>
+          <div class="case-metric improved"><span>Active MCAs</span><span>1</span></div>
+          <div class="case-metric improved"><span>Weekly Debit</span><span>$2,100/week</span></div>
+          <div class="case-metric improved"><span>Factor Rate</span><span>1.28</span></div>
+          <div class="case-metric improved"><span>Approval Ceiling</span><span>Open</span></div>
+        </div>
+        <div class="case-col">
+          <h4>Outcome</h4>
+          <div class="case-result-num">56%</div>
+          <div class="case-result-label">Reduction in weekly payment burden</div>
+          <div style="margin-top:1rem">
+            <div class="case-result-num">$140K</div>
+            <div class="case-result-label">Annual cost savings</div>
+          </div>
+        </div>
+      </div>
+      <div class="case-insight"><strong>Key insight:</strong> Rather than simply refinancing, we negotiated a payoff of the highest-cost position first, then restructured the remaining balance into a lower-factor weekly program with a clear 12-month graduation path.</div>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════════════════════════ PROCESS ════════════════════════════════════════ -->
+<div class="page" id="page-process">
+  <section class="page-hero">
+    <p class="label">How It Works</p>
+    <h2 class="h2">Our process — built around your business needs</h2>
+    <p class="body-text">From first conversation to long-term strategy, here's exactly what to expect when you work with Advanced Family Office.</p>
+  </section>
+  <section class="process-section">
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Confidential Consultation</div>
+          <div class="step-desc">We start with a private conversation about your business, your current capital structure, and what you're trying to accomplish. No pressure, no pitch — just a clear-eyed discussion about where things stand.</div>
+          <div class="step-details">
+            <span class="step-tag">15–30 minutes</span>
+            <span class="step-tag">Phone or video</span>
+            <span class="step-tag">100% confidential</span>
+          </div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Statement Analysis</div>
+          <div class="step-desc">You upload 3 months of bank statements. We analyze deposits, negative days, existing obligations, revenue trends, and approval ceiling — the same metrics funders and underwriters use.</div>
+          <div class="step-details">
+            <span class="step-tag">3 months statements</span>
+            <span class="step-tag">Encrypted upload</span>
+            <span class="step-tag">24-hour turnaround</span>
+          </div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Capital Strategy Presentation</div>
+          <div class="step-desc">We present a full picture: what you qualify for, what it costs, how payments would be structured, and most importantly — the exit strategy. You'll understand every aspect before making any decision.</div>
+          <div class="step-details">
+            <span class="step-tag">Full cost breakdown</span>
+            <span class="step-tag">Multiple options</span>
+            <span class="step-tag">Exit plan included</span>
+          </div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Execution &amp; Funding</div>
+          <div class="step-desc">If you choose to move forward, we manage the entire process — from application through funding. We coordinate directly with funders and keep you informed at every stage.</div>
+          <div class="step-details">
+            <span class="step-tag">24–72 hour funding</span>
+            <span class="step-tag">Direct funder contact</span>
+            <span class="step-tag">Full transparency</span>
+          </div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">5</div>
+        <div>
+          <div class="step-title">Post-Funding Strategy</div>
+          <div class="step-desc">Our relationship doesn't end at funding. We monitor your position, track key metrics, and work proactively to improve your qualification tier — moving you toward lower-cost, long-term financing over time.</div>
+          <div class="step-details">
+            <span class="step-tag">Ongoing monitoring</span>
+            <span class="step-tag">Quarterly reviews</span>
+            <span class="step-tag">Graduation planning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stress-test">
+    <div class="stress-inner">
+      <div class="reveal">
+        <p class="label">Capital Health Check</p>
+        <h2 class="h2" style="color:#fff">We stress-test your position before we ever recommend a deal</h2>
+        <p class="body-text" style="color:rgba(255,255,255,.6)">This is what separates advisory from brokering. We model the impact of any new capital on your existing cash flow — so you make decisions from a position of knowledge, not desperation.</p>
+      </div>
+      <div class="reveal">
+        <div class="stress-factors">
+          <div class="stress-factor"><div class="sf-label">Revenue Analysis</div><div class="sf-value">3-month deposit average</div></div>
+          <div class="stress-factor"><div class="sf-label">Cash Flow Impact</div><div class="sf-value">Payment-to-revenue ratio</div></div>
+          <div class="stress-factor"><div class="sf-label">Risk Assessment</div><div class="sf-value">Negative days &amp; NSF activity</div></div>
+          <div class="stress-factor"><div class="sf-label">Leverage Check</div><div class="sf-value">Position-to-revenue ceiling</div></div>
+          <div class="stress-factor"><div class="sf-label">Approval Modeling</div><div class="sf-value">Tier placement &amp; options</div></div>
+          <div class="stress-factor"><div class="sf-label">Exit Timeline</div><div class="sf-value">Graduation path estimate</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-strip">
+    <h2>Ready to see where your business stands?</h2>
+    <p>Upload your statements and get a confidential capital strategy within 24 hours.</p>
+    <a href="#" onclick="showPage('contact')" class="btn btn-navy">Start Your Free Review</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FAQ ════════════════════════════════════════ -->
+<div class="page" id="page-faq">
+  <section class="page-hero">
+    <p class="label">Questions &amp; Answers</p>
+    <h2 class="h2">Frequently asked questions</h2>
+    <p class="body-text">Direct, honest answers to the questions we hear most often.</p>
+  </section>
+  <section class="faq-section">
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Are you a lender or a broker?</div>
+        <div class="faq-a">Neither — we're a capital advisory firm. We don't lend money directly. We analyze your position, recommend the right structure, and work with a curated network of direct funders to secure the best terms. We disclose our role and compensation upfront.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do you make money?</div>
+        <div class="faq-a">We earn a placement fee when we structure a deal. The key difference: we disclose this fee before you sign anything. We don't hide points in the deal or inflate factor rates. You always know what the deal costs and what we earn.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What do I need to get started?</div>
+        <div class="faq-a">Three months of business bank statements. That's it for the initial review. We'll analyze your deposits, obligations, and approval ceiling — and come back with a clear picture of your options within 24 hours.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">I already have active MCAs. Can you still help?</div>
+        <div class="faq-a">In most cases, yes. We specialize in restructuring existing positions — consolidating multiple MCAs into single, lower-cost payments, or building a strategic payoff sequence. The key is whether your current revenue supports the restructure.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How fast can I get funded?</div>
+        <div class="faq-a">Most deals fund within 24–72 hours of approval. But we prioritize getting the right deal over getting a fast deal. If rushing would mean worse terms or a poor fit, we'll recommend waiting — even if it means a slightly longer timeline.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What if I don't qualify for anything right now?</div>
+        <div class="faq-a">We'll tell you clearly — and explain exactly what needs to change. We'll build a timeline showing what metrics to improve and when to come back. We never push a deal just to close a commission.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What makes you different from other brokers?</div>
+        <div class="faq-a">Three things: full fee transparency, post-funding monitoring, and exit planning. Most brokers close and move on. We stay involved because our goal is to graduate you into lower-cost financing — not keep you in the MCA cycle.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is my information secure?</div>
+        <div class="faq-a">Yes. All documents are transmitted through encrypted channels and stored securely. We share your information only with funders you explicitly approve — and only after you've reviewed the terms being offered.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════════════════════════ ABOUT ════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <section class="page-hero">
+    <p class="label">About Us</p>
+    <h2 class="h2">Built different. On purpose.</h2>
+    <p class="body-text">Advanced Family Office was built on a simple premise: privately owned businesses deserve a capital partner with real money behind them — not another broker collecting a commission.</p>
+  </section>
+  <section class="about-section">
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <blockquote>"We built a family office that puts its own money on the line — because that's the only way to fund businesses the right way."</blockquote>
+        <p style="font-size:.88rem;line-height:1.8;color:rgba(255,255,255,.6);margin-bottom:1.5rem;font-weight:300">With $200M+ in private capital and 15 years of hands-on funding experience, we've built the infrastructure to deploy capital directly — with the discipline, underwriting depth, and long-term vision that the industry lacks.</p>
+        <div class="about-stats">
+          <div><div class="about-stat-num">$200M+</div><div class="about-stat-label">Capital Deployed</div></div>
+          <div><div class="about-stat-num">15+</div><div class="about-stat-label">Years Experience</div></div>
+          <div><div class="about-stat-num">1000s</div><div class="about-stat-label">Businesses Funded</div></div>
+          <div><div class="about-stat-num">Direct</div><div class="about-stat-label">Private Capital</div></div>
+        </div>
+      </div>
+      <div>
+        <p class="label">Our Values</p>
+        <h2 class="h2" style="font-size:1.8rem">What we stand for</h2>
+        <div class="about-values">
+          <div class="value-item reveal">
+            <div class="value-title">Radical Transparency</div>
+            <div class="value-desc">Every fee disclosed. Every funder named. Every cost explained in plain language before you sign. This is non-negotiable.</div>
+          </div>
+          <div class="value-item reveal">
+            <div class="value-title">Generational Thinking</div>
+            <div class="value-desc">We don't optimize for the next deal — we optimize for the next decade. Every structure we build is designed with your long-term financial health in mind.</div>
+          </div>
+          <div class="value-item reveal">
+            <div class="value-title">Honest Guidance</div>
+            <div class="value-desc">If the deal isn't right, we say so. If you're not ready, we explain why. We've walked away from commissions to protect clients — and we always will.</div>
+          </div>
+          <div class="value-item reveal">
+            <div class="value-title">Relationship Over Transaction</div>
+            <div class="value-desc">We measure success by graduation rates — how many businesses we move from high-cost capital to conventional financing. That's the real metric.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="about-commitment">
+    <div class="commitment-inner reveal">
+      <p class="label">Our Commitment</p>
+      <div class="big-quote">"Every business we fund gets the full weight of our capital, our experience, and our commitment to their long-term success. That's the standard we hold ourselves to — on every deal, every day."</div>
+      <div class="big-quote-attr">Advanced Family Office</div>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════════════════════════ CONTRACT REVIEW ════════════════════════════════════════ -->
+<div class="page" id="page-contract">
+  <section class="page-hero">
+    <p class="label">Contract Review Service</p>
+    <h2 class="h2">Don't sign anything until we've reviewed it</h2>
+    <p class="body-text">Got an offer from another funder or broker? Upload it and we'll break down the real cost, identify hidden fees, and tell you if it's worth signing.</p>
+  </section>
+
+  <section class="contract-section">
+    <div class="section-inner" style="text-align:center;margin-bottom:2rem">
+      <p class="label">How It Works</p>
+      <h2 class="h2">Three steps to clarity</h2>
+    </div>
+    <div class="contract-steps-grid">
+      <div class="contract-step reveal">
+        <div class="contract-step-num">01</div>
+        <h3>Upload the Contract</h3>
+        <p>Send us the offer, term sheet, or contract you've received. PDF, photo, or screenshot — whatever you have.</p>
+      </div>
+      <div class="contract-step reveal">
+        <div class="contract-step-num">02</div>
+        <h3>We Analyze Everything</h3>
+        <p>We break down the real cost, identify broker points, calculate the effective rate, and flag any concerning terms or clauses.</p>
+      </div>
+      <div class="contract-step reveal">
+        <div class="contract-step-num">03</div>
+        <h3>Clear Recommendation</h3>
+        <p>You get a plain-language breakdown of whether this deal is fair, overpriced, or worth negotiating — and what alternatives exist.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contract-main">
+    <div class="contract-main-grid">
+      <div class="reveal">
+        <p class="label">What We Look For</p>
+        <h2 class="h2">Every contract tells a story</h2>
+        <p class="body-text">Most business owners can't decode MCA contracts — and the industry counts on that. We translate every term into plain language so you can make informed decisions.</p>
+        <div class="contract-what-list">
+          <div class="contract-what-item">Total payback amount vs. funded amount</div>
+          <div class="contract-what-item">Hidden broker points and markups</div>
+          <div class="contract-what-item">Effective annualized interest rate</div>
+          <div class="contract-what-item">Confession of judgment clauses</div>
+          <div class="contract-what-item">UCC lien positioning</div>
+          <div class="contract-what-item">Default triggers and remedies</div>
+          <div class="contract-what-item">Prepayment penalties or restrictions</div>
+          <div class="contract-what-item">Personal guarantee scope</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="label">What You'll Receive</p>
+        <h2 class="h2">Your contract decoded</h2>
+        <p class="body-text">Within 24 hours, you'll receive a complete analysis including:</p>
+        <div class="contract-what-list">
+          <div class="contract-what-item">Plain-language cost breakdown</div>
+          <div class="contract-what-item">Comparison to current market rates</div>
+          <div class="contract-what-item">Red flag identification</div>
+          <div class="contract-what-item">Negotiation leverage points</div>
+          <div class="contract-what-item">Alternative options (if applicable)</div>
+          <div class="contract-what-item">Clear sign/don't sign recommendation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contract-reassurance">
+    <div class="section-inner" style="text-align:center;margin-bottom:2rem">
+      <p class="label">No Strings Attached</p>
+      <h2 class="h2">Free. Confidential. No obligation.</h2>
+    </div>
+    <div class="contract-reassurance-grid">
+      <div class="reassurance-card reveal">
+        <div class="icon">&#9670;</div>
+        <h4>Completely Free</h4>
+        <p>Our contract review service costs you nothing. We believe informed business owners make better decisions — that benefits everyone.</p>
+      </div>
+      <div class="reassurance-card reveal">
+        <div class="icon">&#9670;</div>
+        <h4>100% Confidential</h4>
+        <p>Your documents are encrypted and never shared. We review your contract in complete privacy.</p>
+      </div>
+      <div class="reassurance-card reveal">
+        <div class="icon">&#9670;</div>
+        <h4>No Pressure</h4>
+        <p>We'll give you our analysis. If you want our help, great. If not, you'll still have the information you need to decide wisely.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-strip">
+    <h2>Have a contract you need reviewed?</h2>
+    <p>Upload it below or send it directly. We'll have your analysis ready within 24 hours.</p>
+    <a href="#" onclick="showPage('contact')" class="btn btn-navy">Upload for Free Review</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ CONTACT ════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <section class="page-hero">
+    <p class="label">Get Started</p>
+    <h2 class="h2">Request your confidential capital review</h2>
+    <p class="body-text">Upload 3 months of bank statements and we'll provide a complete analysis of your capital options within 24 hours. Free. Confidential. No obligation.</p>
+  </section>
+  <section class="contact-section">
+    <div class="contact-grid">
+      <div>
+        <p class="label">What to Expect</p>
+        <h2 class="h2" style="font-size:1.6rem">A real conversation — not a sales pitch</h2>
+        <p class="body-text">After reviewing your statements, we'll schedule a call to walk you through your options in plain language. You'll know exactly what you qualify for, what it costs, and what we recommend.</p>
+        <div class="contact-info-block">
+          <div class="ci-item"><div class="ci-icon">&#9670;</div><div><strong>Response Time</strong><br>24-hour turnaround on all submissions</div></div>
+          <div class="ci-item"><div class="ci-icon">&#9670;</div><div><strong>What We Need</strong><br>3 months of business bank statements (PDF preferred)</div></div>
+          <div class="ci-item"><div class="ci-icon">&#9670;</div><div><strong>Privacy</strong><br>All documents encrypted and never shared without your consent</div></div>
+          <div class="ci-item"><div class="ci-icon">&#9670;</div><div><strong>Cost</strong><br>The initial review is completely free — no strings attached</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="upload-box" id="upload-box">
+          <div class="upload-icon">&#9670;</div>
+          <div class="upload-title">Upload Bank Statements</div>
+          <div class="upload-sub">PDF, JPG, or PNG — up to 25MB per file</div>
+        </div>
+        <form onsubmit="return false">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input class="form-input" type="text" placeholder="Your name"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Business Name</label>
+              <input class="form-input" type="text" placeholder="Your business"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input class="form-input" type="email" placeholder="you@business.com"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input class="form-input" type="tel" placeholder="(555) 000-0000"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">What best describes your situation?</label>
+            <select class="form-select">
+              <option value="">Select one...</option>
+              <option>Need working capital — first time</option>
+              <option>Have active MCAs — looking to restructure</option>
+              <option>Received an offer — want a second opinion</option>
+              <option>Building toward long-term financing</option>
+              <option>Other / Not sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Anything else we should know?</label>
+            <textarea class="form-textarea" placeholder="Current monthly revenue, number of active positions, specific concerns..."></textarea>
+          </div>
+          <button class="form-submit" type="submit">Submit for Free Review</button>
+          <div class="secure-note"><span>&#9670;</span> Your information is encrypted and will never be shared without your explicit consent.</div>
+        </form>
+        <div class="privacy-box">
+          <p>Advanced Family Office is a capital advisory firm. We are not a lender. We do not make credit decisions. All submitted materials are reviewed in confidence and used solely for the purpose of providing you with a capital strategy recommendation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo" onclick="showPage('home')" style="margin-bottom:1rem">
+        <div class="nav-monogram" style="border-color:rgba(255,255,255,.3)">AFO</div>
+        <div class="nav-text">
+          <div class="nav-text-main" style="color:#fff">Advanced Family Office</div>
+          <div class="nav-text-sub">Private Capital</div>
+        </div>
+      </div>
+      <div class="footer-tagline">A privately backed family office deploying direct capital to fuel the businesses that drive the economy.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('approach')">Our Approach</a>
+      <a href="#" onclick="showPage('programs')">Programs</a>
+      <a href="#" onclick="showPage('tiers')">Qualifications</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="#" onclick="showPage('protect')">Protect Yourself</a>
+      <a href="#" onclick="showPage('cases')">Case Studies</a>
+      <a href="#" onclick="showPage('process')">Our Process</a>
+      <a href="#" onclick="showPage('faq')">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#" onclick="showPage('contact')">Free Capital Review</a>
+      <a href="#" onclick="showPage('contract')">Contract Review</a>
+      <a href="#" onclick="showPage('about')">About Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 Advanced Family Office. All rights reserved.</div>
+    <div class="footer-disc">Advanced Family Office is a capital advisory firm. We are not a direct lender. Capital products are provided by third-party funding partners. All applications are subject to underwriting review. Past performance does not guarantee future results.</div>
+  </div>
+</footer>
+
+<script>
+// Navigation
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const target=document.getElementById('page-'+id);
+  if(target){target.classList.add('active');window.scrollTo({top:0,behavior:'instant'})}
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('nav-links').classList.remove('open');
+  observeReveals();
+}
+function toggleMenu(){document.getElementById('nav-links').classList.toggle('open')}
+
+// FAQ
+function toggleFaq(el){el.parentElement.classList.toggle('open')}
+
+// Scroll reveal
+function observeReveals(){
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>obs.observe(el));
+}
+
+// Nav scroll effect
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('main-nav');
+  if(window.scrollY>50){nav.classList.add('scrolled')}
+  else{nav.classList.remove('scrolled')}
+});
+
+// Init
+observeReveals();
+</script>
+
+</body>
+</html>
